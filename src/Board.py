@@ -45,7 +45,9 @@ class Board:
         a = 0
         
     def down(self):
-        a = 0
+        print("down")
+        new2 = random.randint(0, self.boardState.__len__() - 1)
+            
         
     def left(self):
         print("left")
@@ -73,7 +75,7 @@ class Board:
             
     def right(self):
         print("right")
-        new2 = random.randint(0, self.boardState.__len__())
+        new2 = random.randint(0, self.boardState.__len__() -2)
         for i in range(self.boardState.__len__()):
             row = self.boardState[i]
             j = row.__len__() - 2
