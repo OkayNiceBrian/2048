@@ -41,4 +41,59 @@ class Board:
         
         self.boardState = board
         
+    def up(self):
+        a = 0
+        
+    def down(self):
+        a = 0
+        
+    def left(self):
+        print("left")
+        new2 = random.randint(0, self.boardState.__len__())
+        for i in range(self.boardState.__len__()):
+            row = self.boardState[i]
+            j = 1
+            checking = True
+            while (j < row.__len__()):
+                if checking:
+                    if row[j].value == row[j - 1].value or row[j - 1].value == 0 or row[j].value == 0:
+                        row[j - 1].setValue(row[j].value + row[j - 1].value)
+                        checking = False
+                else:
+                    row[j - 1].setValue(row[j].value)
+                j += 1
+            
+            if not checking:
+                if i == new2:
+                    row[row.__len__() - 1].setValue(2)
+                else:
+                    row[row.__len__() - 1].setValue(0)
+
+            self.boardState[i] = row
+            
+    def right(self):
+        print("right")
+        new2 = random.randint(0, self.boardState.__len__())
+        for i in range(self.boardState.__len__()):
+            row = self.boardState[i]
+            j = row.__len__() - 2
+            checking = True
+            while (j >= 0):
+                if checking:
+                    if row[j].value == row[j + 1].value or row[j + 1].value == 0 or row[j].value == 0:
+                        row[j + 1].setValue(row[j].value + row[j + 1].value)
+                        checking = False
+                else:
+                    row[j + 1].setValue(row[j].value)
+                j -= 1
+            
+            if not checking:
+                if i == new2:
+                    row[0].setValue(2)
+                else:
+                    row[0].setValue(0)
+
+            self.boardState[i] = row
+            
+        
         

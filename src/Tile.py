@@ -13,3 +13,6 @@ class Tile:
         self.value = v
         self.image = self.images[self.value]
         
+    def __str__(self):
+        return self.value.__str__()
+        

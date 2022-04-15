@@ -40,12 +40,16 @@ while 1:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 leftPressed = True
+                board.left()
             if event.key == pygame.K_RIGHT:
                 rightPressed = True
+                board.right()
             if event.key == pygame.K_UP:
                 upPressed = True
+                board.up()
             if event.key == pygame.K_DOWN:
                 downPressed = True
+                board.down()
             if event.key == pygame.K_SPACE:
                 spacePressed = True
                 board.resetBoard()
@@ -69,3 +73,4 @@ while 1:
     screen.fill(black)
     board.draw(screen)
     pygame.display.flip()
+    
