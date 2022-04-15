@@ -1,23 +1,29 @@
-import Tile
+from Tile import Tile
 import random
+import pygame
 
 class Board:
     w = 800
     h = 800
     
-    def __init__(self):
-        self.boardState = Board.setupBoard()
+    def __init__(self, images):
+        self.images = images
+        self.boardState = []
+        self.resetBoard()
+        
+    def draw(self, screen):
+        for i in range(self.boardState.__len__()):
+            for j in range(self.boardState[i].__len__()):
+                tile = self.boardState[i][j]
+                rect = tile.image.get_rect(topleft=(j * Tile.w, i * Tile.h))
+                screen.blit(tile.image, rect)
         
     def resetBoard(self):
-        self.boardState = Board.setupBoard()
-        
-    @staticmethod
-    def setupBoard():
         board = [
-            [Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile()],
-            [Tile(), Tile(), Tile(), Tile()]
+            [Tile(self.images), Tile(self.images), Tile(self.images), Tile(self.images)],
+            [Tile(self.images), Tile(self.images), Tile(self.images), Tile(self.images)],
+            [Tile(self.images), Tile(self.images), Tile(self.images), Tile(self.images)],
+            [Tile(self.images), Tile(self.images), Tile(self.images), Tile(self.images)]
         ]
         
         x1 = random.randint(0, 3)
@@ -30,9 +36,9 @@ class Board:
             x2 = random.randint(0, 3)
             y2 = random.randint(0, 3)
             
-        board[x1][y1] = 2
-        board[x2][y2] = 2
+        board[x1][y1].setValue(2)
+        board[x2][y2].setValue(2)
         
-        return board
+        self.boardState = board
         
         
