@@ -49,7 +49,7 @@ class Board:
         
     def left(self):
         print("left")
-        new2 = random.randint(0, self.boardState.__len__())
+        new2 = random.randint(0, self.boardState.__len__() - 1)
         for i in range(self.boardState.__len__()):
             row = self.boardState[i]
             j = 1
@@ -61,7 +61,7 @@ class Board:
                         checking = False
                 else:
                     row[j - 1].setValue(row[j].value)
-                j += 1
+                j += 1 
             
             if not checking:
                 if i == new2:
