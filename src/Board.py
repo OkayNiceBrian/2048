@@ -42,12 +42,49 @@ class Board:
         self.boardState = board
         
     def up(self):
-        a = 0
+        # DOESN'T WORK
+        print("up")
+        new2 = random.randint(0, self.boardState.__len__() - 1)
+        
+        invertedBoardState = self.boardState.copy()
+        for i in range(self.boardState.__len__()):
+            for j in range(self.boardState[i].__len__()):
+                invertedBoardState[j][i].setValue(self.boardState[i][j].value)
+                
+        for i in range(self.boardState.__len__()):
+            print(self.boardState[i][0].__str__() + " " + self.boardState[i][1].__str__() + " " + self.boardState[i][2].__str__() + " " + self.boardState[i][3].__str__())
+        print("================")
+        for i in range(invertedBoardState.__len__()):
+            print(invertedBoardState[i][0].__str__() + " " + invertedBoardState[i][1].__str__() + " " + invertedBoardState[i][2].__str__() + " " + invertedBoardState[i][3].__str__())
+        
+        for i in range(invertedBoardState.__len__()):
+            row = invertedBoardState[i]
+            j = 1
+            checking = True
+            while (j < row.__len__()):
+                if checking:
+                    if row[j].value == row[j - 1].value or row[j - 1].value == 0 or row[j].value == 0:
+                        row[j - 1].setValue(row[j].value + row[j - 1].value)
+                        checking = False
+                else:
+                    row[j - 1].setValue(row[j].value)
+                j += 1 
+            
+            if not checking:
+                if i == new2:
+                    row[row.__len__() - 1].setValue(2)
+                else:
+                    row[row.__len__() - 1].setValue(0)
+
+            invertedBoardState[i] = row
+        
+        for i in range(self.boardState.__len__()):
+            for j in range(self.boardState[i].__len__()):
+                self.boardState[i][j].setValue(invertedBoardState[j][i].value)
         
     def down(self):
         print("down")
         new2 = random.randint(0, self.boardState.__len__() - 1)
-            
         
     def left(self):
         print("left")
